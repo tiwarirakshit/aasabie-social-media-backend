@@ -20,7 +20,7 @@ class StoryController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'user_id' => 'required|exists:users,id',
+                'user_id' => 'required',
                 'text' => 'required',
             ]);
             if ($validator->fails()) {
@@ -65,7 +65,7 @@ class StoryController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'user_id' => 'required|exists:users,id',
+                'user_id' => 'required',
             ]);
             if ($validator->fails()) {
                 return $validator->errors()->all();

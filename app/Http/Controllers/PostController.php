@@ -21,7 +21,7 @@ class PostController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'user_id' => 'required|exists:users,id',
+                'user_id' => 'required',
                 'description' => 'required',
                 'images' => 'required'
             ]);
@@ -57,7 +57,7 @@ class PostController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'user_id' => 'required|exists:users,id',
+                'user_id' => 'required',
                 'post_id' => 'required|exists:posts,id',
                 'content' => 'required'
             ]);
@@ -80,7 +80,7 @@ class PostController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'user_id' => 'required|exists:users,id',
+                'user_id' => 'required',
                 'comment_id' => 'required|exists:comments,id',
                 'post_id' => 'required|exists:posts,id',
                 'content' => 'required'
@@ -137,7 +137,7 @@ class PostController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'user_id' => 'required|exists:users,id',
+                'user_id' => 'required',
             ]);
             if ($validator->fails()) {
                 return $validator->errors()->all();
@@ -178,7 +178,7 @@ class PostController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'post_id' => 'required|exists:posts,id',
-                'user_id' => 'required|exists:users,id',
+                'user_id' => 'required',
                 'like' => 'required',
             ]);
             if ($validator->fails()) {
@@ -205,7 +205,7 @@ class PostController extends Controller
     {      
         try {
             $validator = Validator::make($request->all(), [
-                'user_id' => 'required|exists:users,id',
+                'user_id' => 'required',
                 'post_id' => 'required|exists:posts,id',
                 'description' => 'required',
                 'images' => 'required'
