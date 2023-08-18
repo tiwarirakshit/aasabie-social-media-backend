@@ -49,29 +49,16 @@ class StoryController extends Controller
 
     public function story_view(Request $request)
     {
-        try {
-            $validator = Validator::make($request->all(), [
-                'story_id' => 'required|exists:stories,id',
-            ]);
-            if ($validator->fails()) {
-                return $validator->errors()->all();
-            }
-
-            $user = Story::where('id',$request->story_id)->first();
-          
-            $follow_user = Follow::where('following_id',$user->user_id)->where('follow',1)->first();
-           // dd($follow_user);
-            if($follow_user == Null)
-            {
-                return 'no record found';
-            }else {
-                $datas = Story::where('user_id', $follow_user->following_id)->where('id',$user->id)->first();
-            } 
-            return new GeneralResponse(['data'=> $datas,'message' => 'Story Details Fetch successfully', 'toast' => true]);
-
-        } catch (Exception $e) {
-            return new GeneralError(['code' => 500, 'message' => $e, 'toast' => true]);
+        $validator = Validator::make($request->all(), [
+            'story_id' => 'required|exists:stories,id',
+        ]);
+        if ($validator->fails()) {
+            return $validator->errors()->all();
         }
+
+        $story = Story::Find($request->story_id)->first();
+
+        return $story;
     } 
 
     public function user_story_view(Request $request)
